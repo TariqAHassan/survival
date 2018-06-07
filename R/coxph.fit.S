@@ -103,7 +103,7 @@ coxph.fit <- function(x, y, strata, offset, init, control,
 	    else {
 		infs <- ((infs > control$eps) & 
 			 infs > control$toler.inf*abs(coef))
-		if (any(infs))
+		if (any(infs, na.rm=TRUE))
 		warning(paste("Loglik converged before variable ",
 			  paste((1:nvar)[infs],collapse=","),
 			  "; beta may be infinite. "))

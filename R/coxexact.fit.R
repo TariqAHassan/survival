@@ -101,7 +101,8 @@ coxexact.fit <- function(x, y, strata, offset, init, control,
 	    else {
 		infs <- ((infs > control$eps) & 
 			 infs > control$toler.inf*abs(coef))
-		if (any(infs, na.rm = TRUE))
+		infs[is.na(infs)] <- TRUE
+		if (any(infs))
 		warning(paste("Loglik converged before variable ",
 			  paste((1:nvar)[infs],collapse=","),
 			  "; beta may be infinite. "))
